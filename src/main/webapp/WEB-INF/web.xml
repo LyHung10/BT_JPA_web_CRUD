@@ -19,4 +19,14 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>VideoController</display-name>
+    <servlet-name>VideoController</servlet-name>
+    <servlet-class>vn.iotstar.controller.admin.VideoController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VideoController</servlet-name>
+    <url-pattern>/VideoController</url-pattern>
+  </servlet-mapping>
 </web-app>
