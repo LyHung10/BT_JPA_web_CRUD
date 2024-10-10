@@ -2,13 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core"%>
 
-<h2>Edit Video</h2>
+<h2>Edit video</h2>
 <form action="<c:url value='/admin/video/update'></c:url>" method="post"
 	enctype="multipart/form-data">
 	<input type="text" id="videoid" name="videoid" hidden="hidden"
-		value="${video.videoId}"><br> <label for="videotitle">Video
+		value="${video.videoId}"><br> <label for="videotitle">video
 		Title:</label><br> <input type="text" id="videotitle" name="videotitle"
-		value="${video.title}"><br> <label for="videocount">Video
+		value="${video.title}"><br> <label for="videocount">video
 		Count:</label><br> <input type="text" id="videocount" name="videocount"
 		value="${video.views}"><br> <label for="category">Category:</label><br>
 	<select id="category" name="categoryId">

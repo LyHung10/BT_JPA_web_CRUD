@@ -27,6 +27,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>VideoController</servlet-name>
-    <url-pattern>/VideoController</url-pattern>
+    <url-pattern>/admin/videos/*</url-pattern>
   </servlet-mapping>
 </web-app>
