@@ -1,5 +1,5 @@
 package vn.iotstar.controller.admin;
-
+import vn.iotstar.utils.Constant;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
@@ -73,7 +73,7 @@ public class CategoryController extends HttpServlet {
 
 			// xu ly upload file
 			String fname = "";
-			String uploadPath = "E:\\upload";
+			String uploadPath =Constant.UPLOAD_DIRECTORY;
 			File uploadDir = new File(uploadPath);
 			if (!uploadDir.exists()) {
 				uploadDir.mkdir();
@@ -105,17 +105,16 @@ public class CategoryController extends HttpServlet {
 			int categoryid = Integer.parseInt(req.getParameter("categoryId"));
 			String categoryname = req.getParameter("categoryname");
 			int status = Integer.parseInt(req.getParameter("status"));
-			String images = req.getParameter("images");
+			//String images = req.getParameter("images");
 			Category category = new Category();
 			// dua vao model
 			category.setCategoryId(categoryid);
 			category.setCategoryname(categoryname);
 			category.setStatus(status);
-			category.setImages(images);
-
-			// xu ly upload file
+			//category.setImages(images);
+			// su li images cũ
 			String fname = "";
-			String uploadPath = "E:\\upload";
+			String uploadPath =Constant.UPLOAD_DIRECTORY;
 			File uploadDir = new File(uploadPath);
 			if (!uploadDir.exists()) {
 				uploadDir.mkdir();
@@ -129,15 +128,43 @@ public class CategoryController extends HttpServlet {
 					fname = System.currentTimeMillis() + "." + ext;
 					part.write(uploadPath + "/" + fname);
 					category.setImages(fname);
-				} else if (images != null) {
-					category.setImages(images);
+				
 				} else {
-					category.setImages("avata.png");
+					category.setImages("fileold");
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			// truyen model vao insert
+			
+			
+			
+//			Category cateold = cateService.findById(categoryid);
+//			String fileold = cateold.getImages();
+//			// xu ly image moi
+//			String fname = "";
+//			String uploadPath = Constant.UPLOAD_DIRECTORY;
+//			File uploadDir = new File(uploadPath);
+//			if (!uploadDir.exists()) {
+//				uploadDir.mkdir();
+//			}
+//			try {
+//				Part part = req.getPart("images1");
+//				if (part.getSize() > 0) {
+//					String filename = Paths.get(part.getSubmittedFileName()).getFileName().toString();
+//					int index = filename.lastIndexOf(".");
+//					String ext = filename.substring(index + 1);
+//					fname = System.currentTimeMillis() + "." + ext;
+//					part.write(uploadPath + "/" + fname);
+//					category.setImages(fname);
+//				} else if (images != null) {
+//					category.setImages(images);
+//				} else {
+//					category.setImages("avata.png");
+//				}
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//			// truyen model vao insert
 			cateService.update(category);
 			// tra ve view/
 			resp.sendRedirect(req.getContextPath() + "/admin/categories");
